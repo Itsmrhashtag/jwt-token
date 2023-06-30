@@ -4,6 +4,7 @@ import com.ji.hash.entity.User;
 import com.ji.hash.service.UserService;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +18,7 @@ public class UserController {
 
     @PostConstruct
     public void initRolesAndUsers(){
+
         userService.initRolesAndUser();
     }
 
@@ -27,11 +29,13 @@ public class UserController {
     }
 
     @GetMapping({"/forAdmin"})
+    @PreAuthorize("hasRole('Admin')")
     public String forAdmin(){
         return "Url for admin";
     }
 
     @GetMapping({"/forUser"})
+    @PreAuthorize("hasRole('User')")
     public String forUser(){
         return "Url for User";
     }

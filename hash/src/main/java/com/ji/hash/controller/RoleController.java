@@ -15,8 +15,9 @@ public class RoleController {
     @Autowired
     private RoleService roleService;
 
-    @PostMapping("/createNewRole")
+    @PostMapping({"/createNewRole"})
     public Role createNewRole(@RequestBody Role role){
+
         return  roleService.createNewRole(role);
     }
 }

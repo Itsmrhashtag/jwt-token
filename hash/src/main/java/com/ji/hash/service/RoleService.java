@@ -13,6 +13,7 @@ public class RoleService {
     private RoleDao roleDao;
 
     public Role createNewRole(Role role){
+
         return roleDao.save(role);
     }
 }
